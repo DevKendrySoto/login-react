@@ -3,13 +3,72 @@
 .login-section, .welcome-section {
     min-height: 100vh; 
 }
+.login-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+.contenedor {
+	display: flex;
+	width: 300px;
+	height: 40px;
+	color: #fff;
+	font-size: 40px;
+	line-height: 40px;
+	
+	position: relative;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	
+}
+    
+
+ul {
+    text-align: center;
+	list-style: none;
+	padding-left: 10px;
+	animation: cambiar 7s infinite;
+}
+
+ul, p {
+	margin: 0;
+}
+
+@keyframes cambiar {
+	
+	0%{ margin-top: 0;}
+	20%{ margin-top: 0;}
+	
+	25% {margin-top: -40px;}
+	50% {margin-top: -40px;}
+	
+	55% {margin-top: -80px;}
+	80% {margin-top: -80px;}
+	
+	85% {margin-top: -40px;}
+	95% {margin-top: -40px;}
+	
+	100% {margin-top: 0;}
+}
+
+.img {
+    margin-left: auto; 
+    width: 90%; 
+}
 
 .welcome-section {
     background-color: blue; 
     color: white; 
-    display: flex;
-    justify-content: center;
-    align-items: center; 
+    padding-right: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
@@ -19,4 +78,9 @@
     .welcome-section {
         display: none; 
     }
+}
+.form{
+    width: 80%;
+    padding: 15px;
+    margin: auto;
 }

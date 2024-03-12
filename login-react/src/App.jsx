@@ -3,9 +3,9 @@ import appFireBase from './credentials'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 const auth = getAuth(appFireBase)
 
-import Home from './components/Home'
-import Login from './components/Login'
-import './App.css'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import './styles/App.css'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -20,7 +20,6 @@ function App() {
 
   return (
     <div>
-      
       {user ? <Home /> : <Login />} 
     </div>
   )
