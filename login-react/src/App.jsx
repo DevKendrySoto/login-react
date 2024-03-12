@@ -1,15 +1,28 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import appFireBase from './credentials'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+const auth = getAuth(appFireBase)
+
+import Home from './components/Home'
+import Login from './components/Login'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState(null)
+
+  onAuthStateChanged(auth, (userFireBase) => {
+    if (userFireBase) {
+      setUser(userFireBase)
+    } else {
+      setUser(null)
+    }
+  })
 
   return (
-    <>
-      <h1>hello word</h1>
-    </>
+    <div>
+      
+      {user ? <Home /> : <Login />} 
+    </div>
   )
 }
 

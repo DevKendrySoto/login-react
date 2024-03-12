@@ -1,0 +1,22 @@
+
+
+.login-section, .welcome-section {
+    min-height: 100vh; 
+}
+
+.welcome-section {
+    background-color: blue; 
+    color: white; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+@media (max-width: 768px) {
+    .login-section {
+        width: 100%;
+    }
+    .welcome-section {
+        display: none; 
+    }
+}
