@@ -2,8 +2,16 @@ import { useState } from "react";
 import "../styles/Login.css";
 import img from "../images/images.png";
 
+import appFireBase from "../credentials";
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+const auth = getAuth(appFireBase)
+
+import { Link } from 'react-router-dom';
+
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [userRegister, setUserRegister] = useState(false);
 
   const handleCheckboxChange = () => {
     setShowPassword(!showPassword);
@@ -12,7 +20,7 @@ const Login = () => {
   return (
     <div className="container-fluid p-0">
       <div className="row g-0">
-        <div className="col-6 welcome-section d-none d-md-flex">
+        <div className="col-6 welcome-section-login d-none d-md-flex">
           <div class="contenedor">
             <p>Hola,</p>
             <ul>
@@ -30,7 +38,7 @@ const Login = () => {
               <div className="form-floating mb-3">
                 <input
                   type="email"
-                  className="form-control"
+                  className="form-control rounded-pill"
                   id="floatingInput"
                   placeholder="name@example.com"
                 />
@@ -39,7 +47,7 @@ const Login = () => {
               <div className="form-floating mb-3">
                 <input
                   type={showPassword ? "text" : "password"}
-                  className="form-control"
+                  className="form-control rounded-pill"
                   id="floatingPassword"
                   placeholder="Password"
                 />
@@ -58,14 +66,14 @@ const Login = () => {
                 </label>
               </div>
               <div className="d-grid">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" disabled={userRegister} className="btn btn-primary rounded-pill">
                   Iniciar sesión
                 </button>
               </div>
               <div className="mt-3 text-center">
-                <a href="/Register">Registrarse</a> |{" "}
-                <a href="#">Olvidé mi contraseña</a>
-              </div>
+      <Link to="/register">Registrarse</Link> |{" "}
+      <Link to="/forgot-password">Olvidé mi contraseña</Link>
+    </div>
             </form>
           </div>
         </div>

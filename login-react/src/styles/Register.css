@@ -75,8 +75,8 @@ p {
   width: 90%;
 }
 
-.welcome-section-login{
-  background-image: linear-gradient(to right, rgb(0, 0, 255), white);
+.welcome-section {
+  background-image: linear-gradient(to left, rgb(0, 0, 255), white);
   opacity: 5px;
   color: white;
   padding-right: 15px;
