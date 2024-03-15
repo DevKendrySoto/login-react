@@ -2,12 +2,7 @@ import { useState } from "react";
 import "../styles/Login.css";
 import img from "../images/images.png";
 
-import appFireBase from "../credentials";
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-const auth = getAuth(appFireBase)
-
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -66,14 +61,18 @@ const Login = () => {
                 </label>
               </div>
               <div className="d-grid">
-                <button type="submit" disabled={userRegister} className="btn btn-primary rounded-pill">
+                <button
+                  type="submit"
+                  disabled={userRegister}
+                  className="btn btn-primary rounded-pill"
+                >
                   Iniciar sesión
                 </button>
               </div>
               <div className="mt-3 text-center">
-      <Link to="/register">Registrarse</Link> |{" "}
-      <Link to="/forgot-password">Olvidé mi contraseña</Link>
-    </div>
+                <Link to="/register">Registrarse</Link> |{" "}
+                <Link to="/forgot-password">Olvidé mi contraseña</Link>
+              </div>
             </form>
           </div>
         </div>
