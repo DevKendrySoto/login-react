@@ -1,21 +1,25 @@
-import { createContext, useContext } from "react";
+import React, { createContext, useContext } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import appFireBase from "../credentials";
+import { auth } from "../credentials"; 
 
-const authContext = createContext();
+const AuthContext = createContext();
 
-const useAuth = () => {
-  const context = useContext(authContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
 
-function AuthProvider({ children }) {
+export function AuthProvider({ children }) {
   const signup = (email, password) => {
-    createUserWithEmailAndPassword(appFireBase, email, password);
+    return createUserWithEmailAndPassword(auth, email, password);
   };
-  return <authContext.Provider value={signup}>{children}</authContext.Provider>;
+
+  return (
+    <AuthContext.Provider value={{ signup }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
-export { authContext, AuthProvider, useAuth };
