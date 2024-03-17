@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import img from "../images/images.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
+import  AlertNotification  from "../components/Alert";
 
 import "../styles/Register.css";
 
 function RegisterForm() {
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [userRegister, setUserRegister] = useState({
     firstName: "",
@@ -14,13 +16,35 @@ function RegisterForm() {
     password: "",
   });
   const { signup } = useAuth();
+  const navigate = useNavigate();
 
   const handleInputChange = ({ target: { name, value } }) => {
     setUserRegister({ ...userRegister, [name]: value });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    signup(userRegister.email, userRegister.password);
+    setError("")
+    try {
+      await signup(userRegister.email, userRegister.password);
+      AlertNotification( "Usuario registrado correctamente", 'success'); 
+      navigate("/login");
+    } catch (error) {
+      let errorMessage;
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          errorMessage = 'El correo electrónico ya está siendo utilizado por otra cuenta.';
+          break;
+        case 'auth/wrong-password':
+          errorMessage = 'La contraseña es incorrecta para el correo electrónico proporcionado.';
+          break;
+        case 'auth/network-request-failed':
+          errorMessage = 'Se produjo un error de red. Por favor, verifica tu conexión a internet e inténtalo de nuevo.';
+          break;
+        default:
+          errorMessage = 'Ocurrió un error inesperado. Por favor, inténtalo de nuevo más tarde.';
+      }
+      setError(errorMessage);
+    }
   };
 
   const handleCheckboxChange = () => setShowPassword(!showPassword);
@@ -34,6 +58,7 @@ function RegisterForm() {
             <form className="p-5 form" onSubmit={handleSubmit}>
               <div className="form-floating mb-3">
                 <input
+                  required
                   onChange={handleInputChange}
                   name="firstName"
                   type="text"
@@ -45,6 +70,7 @@ function RegisterForm() {
               </div>
               <div className="form-floating mb-3">
                 <input
+                  required
                   onChange={handleInputChange}
                   name="lastName"
                   type="text"
@@ -56,6 +82,7 @@ function RegisterForm() {
               </div>
               <div className="form-floating mb-3">
                 <input
+                  required
                   onChange={handleInputChange}
                   name="email"
                   type="email"
@@ -67,7 +94,9 @@ function RegisterForm() {
               </div>
               <div className="form-floating mb-3">
                 <input
+                  required
                   onChange={handleInputChange}
+                  minLength={6}
                   name="password"
                   type={showPassword ? "text" : "password"}
                   className="form-control rounded-pill"
@@ -76,6 +105,28 @@ function RegisterForm() {
                 />
                 <label htmlFor="floatingPassword">Contraseña</label>
               </div>
+              {error && (
+                <div className="alert alert-danger text-muted border border-danger rounded-pill">
+                  {" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    className="me-2 lucide lucide-circle-alert"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" x2="12" y1="8" y2="12" />
+                    <line x1="12" x2="12.01" y1="16" y2="16" />
+                  </svg>
+                  {error}
+                </div>
+              )}
               <div className="mb-3">
                 <input
                   type="checkbox"
