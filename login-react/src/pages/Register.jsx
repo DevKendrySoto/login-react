@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import img from "../images/images.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
-import  AlertNotification  from "../components/Alert";
+import AlertNotification from "../components/Alert";
 
 import "../styles/Register.css";
 
@@ -23,25 +23,29 @@ function RegisterForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("")
+    setError("");
     try {
       await signup(userRegister.email, userRegister.password);
-      AlertNotification( "Usuario registrado correctamente", 'success'); 
+      AlertNotification("Usuario registrado correctamente", "success");
       navigate("/login");
     } catch (error) {
       let errorMessage;
       switch (error.code) {
-        case 'auth/email-already-in-use':
-          errorMessage = 'El correo electrónico ya está siendo utilizado por otra cuenta.';
+        case "auth/email-already-in-use":
+          errorMessage =
+            "El correo electrónico ya está siendo utilizado por otra cuenta.";
           break;
-        case 'auth/wrong-password':
-          errorMessage = 'La contraseña es incorrecta para el correo electrónico proporcionado.';
+        case "auth/wrong-password":
+          errorMessage =
+            "La contraseña es incorrecta para el correo electrónico proporcionado.";
           break;
-        case 'auth/network-request-failed':
-          errorMessage = 'Se produjo un error de red. Por favor, verifica tu conexión a internet e inténtalo de nuevo.';
+        case "auth/network-request-failed":
+          errorMessage =
+            "Se produjo un error de red. Por favor, verifica tu conexión a internet e inténtalo de nuevo.";
           break;
         default:
-          errorMessage = 'Ocurrió un error inesperado. Por favor, inténtalo de nuevo más tarde.';
+          errorMessage =
+            "Ocurrió un error inesperado. Por favor, inténtalo de nuevo más tarde.";
       }
       setError(errorMessage);
     }
