@@ -170,7 +170,7 @@ function RegisterForm() {
         <div className="col-6 welcome-section d-none d-md-flex">
           <div className="contenedor">
             <p>Hola,</p>
-            <ul>
+            <ul className="letter">
               <li>Bienvenido</li>
               <li>Al</li>
               <li>Registro</li>

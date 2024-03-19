@@ -24,14 +24,14 @@
   overflow: hidden;
 }
 
-ul {
+.letter {
   text-align: center;
   list-style: none;
   padding-left: 10px;
   animation: cambiar 7s infinite;
 }
 
-ul,
+.letter,
 p {
   margin: 0;
 }

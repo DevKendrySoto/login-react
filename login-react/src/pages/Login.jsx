@@ -57,7 +57,7 @@ const Login = () => {
         <div className="col-6 welcome-section-login d-none d-md-flex">
           <div className="contenedor">
             <p>Hola,</p>
-            <ul>
+            <ul className="letter">
               <li>Mundo</li>
               <li>Usuario</li>
               <li>Bienvenido</li>
