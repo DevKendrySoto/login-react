@@ -53,7 +53,7 @@ const Home = () => {
             </button>
             <ul className="dropdown-menu p-2">
               <li>
-                Hola,<strong>{user.email}</strong>
+                <strong>{user.email}</strong>
               </li>
 
               <li className="dropdown-item" onClick={handleLogout}>
@@ -67,14 +67,13 @@ const Home = () => {
         <div className="card" style={{ width: "18rem" }}>
           <img src={img} className="card-img-top" alt="..." />
           <div className="card-body">
-            <h5 className="card-title">Hola, {user.email}</h5>
+            <h5 className="card-title">
+              Hola, <strong>{user.displayName || user.email}</strong>
+            </h5>
             <p className="card-text">
               Este es una aplicacion de prueba, realizzando un login con react y
               firebase
             </p>
-            <a href="#" className="btn btn-primary m-2">
-              Go somewhere
-            </a>
           </div>
         </div>
       </div>

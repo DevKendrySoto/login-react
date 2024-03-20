@@ -3,6 +3,7 @@ import "../styles/Login.css";
 import img from "../images/images.png";
 import { useAuth } from "../context/authContext";
 import { Link, useNavigate } from "react-router-dom";
+import AlertNotification from "../components/Alert";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -12,7 +13,7 @@ const Login = () => {
     password: "",
   });
 
-  const { login } = useAuth();
+  const { login, loginWithGoogle, resetPassword } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = ({ target: { name, value } }) => {
@@ -42,13 +43,44 @@ const Login = () => {
           errorMessage =
             "Ocurrió un error inesperado. Por favor, inténtalo de nuevo más tarde.";
       }
-      console.log(error);
       setError(errorMessage);
     }
   };
 
   const handleCheckboxChange = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleGoogleSignin = async () => {
+    setError("");
+    try {
+      await loginWithGoogle();
+      navigate("/");
+    } catch (error) {
+      AlertNotification(
+        "Ocurrió un error inesperado. Por favor, inténtalo de nuevo más tarde.",
+        "error"
+      );
+    }
+  };
+
+  const handleResetPassword = async () => {
+    if (!userLogin.email) return;
+    setError(
+      "Por favor, ingresa tu correo electrónico para restablecer tu contraseña."
+    );
+    try {
+      await resetPassword(userLogin.email);
+      AlertNotification(
+        "Se ha enviado un correo electrónico para restablecer tu contraseña.",
+        "success"
+      );
+    } catch (error) {
+      AlertNotification(
+        "Ocurrió un error inesperado. Por favor, inténtalo de nuevo más tarde.",
+        "error"
+      );
+    }
   };
 
   return (
@@ -133,9 +165,24 @@ const Login = () => {
               </div>
               <div className="mt-3 text-center">
                 <Link to="/register">Registrarse</Link> |{" "}
-                <Link to="/forgot-password">Olvidé mi contraseña</Link>
+                <button className="link-style" onClick={handleResetPassword}>
+                  Olvidé mi contraseña
+                </button>
               </div>
             </form>
+            <div className="mt-3 text-center">
+              <button
+                className="btn btn-light rounded-pill shadow-sm google-btn"
+                onClick={handleGoogleSignin}
+              >
+                iniciar sesión con <span className="g">G</span>
+                <span className="o1">o</span>
+                <span className="o2">o</span>
+                <span className="g">g</span>
+                <span className="l">l</span>
+                <span className="e">e</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

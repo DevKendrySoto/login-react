@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { AuthProvider } from "./context/authContext";
-import "./styles/App.css";
 import ProtectedRouter from "./components/ProtectedRoute";
 
 function App() {

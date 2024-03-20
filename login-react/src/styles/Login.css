@@ -23,6 +23,22 @@
   left: 0;
   overflow: hidden;
 }
+button.link-style {
+  background: none;
+  color: blue;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit; 
+}
+
+button.link-style:hover,
+button.link-style:focus {
+  text-decoration: none; 
+  color: darkblue; 
+}
 
 .letter {
   text-align: center;
@@ -75,7 +91,7 @@ p {
   width: 90%;
 }
 
-.welcome-section-login{
+.welcome-section-login {
   background-image: linear-gradient(to right, rgb(0, 0, 255), white);
   opacity: 5px;
   color: white;
@@ -99,3 +115,25 @@ p {
   padding: 15px;
   margin: auto;
 }
+.google-btn {
+  border: none;
+  background-color: #fff;
+  color: #000;
+  overflow: hidden;
+}
+
+.google-btn span {
+  display: inline-block;
+  transition: 0.1s;
+}
+
+.google-btn:hover .g { animation: grow 0.5s infinite; color: #db4437; }
+.google-btn:hover .o1 { animation: grow 0.5s infinite 0.1s; color: #f4b400; }
+.google-btn:hover .o2 { animation: grow 0.5s infinite 0.2s; color: #f4b400; }
+.google-btn:hover .l { animation: grow 0.5s infinite 0.3s; color: #4285f4; }
+.google-btn:hover .e { animation: grow 0.5s infinite 0.4s; color: #0f9d58; }
+
+@keyframes grow {
+  0%, 100% { transform: scale(1); }
+}
+
