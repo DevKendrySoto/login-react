@@ -17,7 +17,7 @@ Este proyecto es un sistema de login desarrollado con React, utilizando herramie
 
    ```
    git clone https://github.com/DevKendrySoto/login-react.git
-   cd tu-repositorio
+   cd login-react
    ```
 
 2. **Instala las dependencias**
