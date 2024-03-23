@@ -1,4 +1,4 @@
-# Login de Prueba en React
+# Login React
 
 Este proyecto es un sistema de login desarrollado con React, utilizando herramientas modernas como ViteJS, Firebase Authentication (incluyendo login con Google), SweetAlert para notificaciones, React Router DOM para la navegación y Bootstrap para estilos. 
 
@@ -10,6 +10,23 @@ Este proyecto es un sistema de login desarrollado con React, utilizando herramie
 - **Navegación entre páginas** gestionada con React Router DOM.
 - **Diseño responsive** con Bootstrap y Css para adaptarse a cualquier dispositivo.
 - **Estilos modernos** y atractivos, proporcionando una excelente experiencia de usuario.
+
+## Configuración de Variables de Entorno
+
+Antes de ejecutar el proyecto, necesitarás configurar las variables de entorno necesarias para Firebase:
+
+1. Crea un archivo `.env` en la raíz del proyecto con el siguiente contenido:
+
+```
+VITE_API_KEY=tu_api_key_de_firebase
+VITE_AUTH_DOMAIN=tu_auth_domain_de_firebase
+VITE_PROJECT_ID=tu_project_id_de_firebase
+VITE_STORAGE_BUCKET=tu_storage_bucket_de_firebase
+VITE_MESSAGING_SENDER_ID=tu_messaging_sender_id_de_firebase
+VITE_APP_ID=tu_app_id_de_firebase
+```
+
+2. Reemplaza los valores de placeholder (`tu_api_key_de_firebase`, `tu_auth_domain_de_firebase`, etc.) con tus propias claves de configuración de Firebase que puedes obtener de la Firebase Console.
 
 ## Instalación
 
@@ -48,5 +65,7 @@ Este proyecto es un sistema de login desarrollado con React, utilizando herramie
 - Protección de rutas para usuarios autenticados con un componente `ProtectedRoute`.
 - Formulario de recuperación de contraseña para permitir a los usuarios restablecer su contraseña.
 - Validación de formularios para mejorar la experiencia de usuario y evitar errores.
+
+---
 
 
